@@ -7,6 +7,7 @@
           :key="item"
           class="footer__nav-link"
           href="#"
+          @click.prevent="handleNavClick(item)"
         >
           {{ item }}
         </a>
@@ -47,6 +48,11 @@ export default Vue.extend({
       menuItems: ['Каталог', 'Доставка', 'Оплата', 'Контакты', 'О компании'] as string[],
     };
   },
+  methods: {
+    handleNavClick(item: string): void {
+      this.$emit('nav-click', item);
+    },
+  },
 });
 </script>
 
@@ -68,7 +74,7 @@ export default Vue.extend({
 
 .footer__nav {
   display: flex;
-  gap: 48px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -88,7 +94,7 @@ export default Vue.extend({
 
 .footer__contacts {
   display: flex;
-  gap: 48px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 

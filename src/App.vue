@@ -3,6 +3,7 @@
     <AppHeader
       :search-query.sync="searchQuery"
       @search="onSearch"
+      @nav-click="onNavClick"
     />
     <main class="main">
       <h1 class="main__title">Картины эпохи Возрождения</h1>
@@ -21,13 +22,18 @@
         <p>Ничего не найдено</p>
       </div>
     </main>
-    <AppFooter />
+    <AppFooter @nav-click="onNavClick" />
     <ProductModal
       v-if="selectedProduct"
       :product="selectedProduct"
       :visible="modalVisible"
       @close="closeModal"
     />
+    <transition name="toast-fade">
+      <div v-if="toast.visible" class="toast">
+        {{ toast.message }}
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -57,6 +63,11 @@ export default Vue.extend({
       cartItems: [] as number[],
       modalVisible: false,
       selectedProduct: null as Product | null,
+      toast: {
+        visible: false,
+        message: '',
+        timer: null as number | null,
+      } as { visible: boolean; message: string; timer: number | null },
     };
   },
   computed: {
@@ -94,6 +105,26 @@ export default Vue.extend({
     },
     closeModal(): void {
       this.modalVisible = false;
+    },
+    onNavClick(item: string): void {
+      if (item === 'Каталог') {
+        const grid = this.$el.querySelector('.main__grid');
+        if (grid) {
+          grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        this.showToast(`Раздел «${item}» в разработке`);
+      }
+    },
+    showToast(message: string): void {
+      if (this.toast.timer) {
+        clearTimeout(this.toast.timer);
+      }
+      this.toast.message = message;
+      this.toast.visible = true;
+      this.toast.timer = window.setTimeout(() => {
+        this.toast.visible = false;
+      }, 2500);
     },
     loadCart(): void {
       try {
@@ -246,5 +277,32 @@ body {
   .main__grid {
     gap: 12px;
   }
+}
+
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #403432;
+  color: #f4f6f9;
+  font-family: 'Merriweather', serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 12px 28px;
+  z-index: 2000;
+  white-space: nowrap;
+}
+
+.toast-fade-enter-active,
+.toast-fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast-fade-enter,
+.toast-fade-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(12px);
 }
 </style>
