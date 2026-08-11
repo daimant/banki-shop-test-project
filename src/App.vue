@@ -13,6 +13,7 @@
           :product="product"
           :cart-items="cartItems"
           @add-to-cart="addToCart"
+          @remove-from-cart="removeFromCart"
           @open-modal="openModal"
         />
       </div>
@@ -74,6 +75,13 @@ export default Vue.extend({
     addToCart(productId: number): void {
       if (!this.cartItems.includes(productId)) {
         this.cartItems.push(productId);
+        this.saveCart();
+      }
+    },
+    removeFromCart(productId: number): void {
+      const idx = this.cartItems.indexOf(productId);
+      if (idx > -1) {
+        this.cartItems.splice(idx, 1);
         this.saveCart();
       }
     },

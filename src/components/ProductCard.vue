@@ -33,7 +33,7 @@
         v-if="!product.soldOut"
         class="product-card__buy-btn"
         :class="buttonClass"
-        :disabled="isProcessing || isInCart"
+        :disabled="isProcessing"
         @click="handleBuyClick"
       >
         <span v-if="isDefault" class="product-card__btn-text">Купить</span>
@@ -99,7 +99,12 @@ export default Vue.extend({
       return price.toLocaleString('ru-RU');
     },
     handleBuyClick(): void {
-      if (this.isProcessing || this.isInCart) return;
+      if (this.isProcessing) return;
+
+      if (this.isInCart) {
+        this.$emit('remove-from-cart', this.product.id);
+        return;
+      }
 
       this.processingIds.push(this.product.id);
 
@@ -239,8 +244,12 @@ export default Vue.extend({
 
 .product-card__buy-btn--in-cart {
   background: #5b3a32;
-  cursor: default;
+  cursor: pointer;
   width: 118px;
+}
+
+.product-card__buy-btn--in-cart:hover {
+  background: #8b6b62;
 }
 
 .product-card__buy-btn:disabled {
