@@ -62,11 +62,12 @@ export default Vue.extend({
   align-items: center;
   justify-content: space-between;
   padding: 0 352px;
+  gap: 48px;
 }
 
 .header__nav {
   display: flex;
-  gap: 10px;
+  gap: 10px 48px;
   flex-wrap: wrap;
 }
 
