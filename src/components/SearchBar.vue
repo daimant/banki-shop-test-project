@@ -4,6 +4,7 @@
       v-model="query"
       type="text"
       class="search-bar__input"
+      :class="{ 'search-bar__input--has-value': query.length > 0 }"
       placeholder="Поиск по названию картины"
       @input="onInput"
     />
@@ -75,6 +76,10 @@ export default Vue.extend({
   border-color: #b5b5b5;
 }
 
+.search-bar__input--has-value {
+  border-color: #b5b5b5;
+}
+
 .search-bar__button {
   width: 122px;
   height: 48px;
@@ -96,6 +101,10 @@ export default Vue.extend({
 
 .search-bar__button:active {
   background: #382e2b;
+}
+
+.search-bar__button:disabled {
+  background: #C1B4B1;
 }
 
 @media (max-width: 768px) {

@@ -166,7 +166,6 @@ export default Vue.extend({
   min-height: 54px;
   cursor: pointer;
   transition: opacity 0.2s;
-  white-space: pre-line;
 }
 
 .product-card__title:hover {
@@ -209,6 +208,8 @@ export default Vue.extend({
   font-size: 16px;
   line-height: 1.5;
   color: #343030;
+  min-height: 48px;
+  align-content: center;
 }
 
 .product-card__buy-btn {
