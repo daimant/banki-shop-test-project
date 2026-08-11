@@ -5,8 +5,8 @@
 ## Технологии
 
 - **Vue 2.7** (Options API + TypeScript)
-- **Webpack 5** — сборка и dev-сервер
-- **CSS** (scoped styles, без препроцессоров)
+- **Vite 4** — сборка и dev-сервер
+- **Yarn** — менеджер пакетов
 - Шрифт **Merriweather** (Google Fonts)
 
 ## Установка и запуск
@@ -14,17 +14,18 @@
 ### Требования
 
 - Node.js 16+
+- Yarn 1.x (classic)
 
 ### Установка зависимостей
 
 ```bash
-npm install
+yarn install
 ```
 
 ### Запуск в режиме разработки
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 Приложение будет доступно по адресу [http://localhost:8080](http://localhost:8080).
@@ -32,10 +33,16 @@ npm run dev
 ### Production-сборка
 
 ```bash
-npm run build
+yarn build
 ```
 
 Результат сборки будет помещён в папку `dist/`.
+
+### Предпросмотр production-сборки
+
+```bash
+yarn preview
+```
 
 ## Функционал
 
@@ -60,10 +67,9 @@ npm run build
 ```
 banki-shop-test-project/
 ├── public/
-│   ├── images/          # Исходные изображения (из Figma)
-│   └── index.html       # HTML-шаблон
+│   └── images/          # Исходные изображения (из Figma)
 ├── src/
-│   ├── assets/          # Изображения для импорта webpack
+│   ├── assets/          # Изображения для импорта Vite
 │   ├── components/      # Vue-компоненты
 │   │   ├── AppHeader.vue
 │   │   ├── AppFooter.vue
@@ -77,8 +83,10 @@ banki-shop-test-project/
 │   ├── App.vue          # Корневой компонент
 │   ├── main.ts          # Точка входа
 │   └── shims-vue.d.ts   # Декларации типов
-├── package.json
+├── index.html           # HTML-шаблон (Vite)
+├── vite.config.ts
 ├── tsconfig.json
-├── webpack.config.js
+├── package.json
+├── .gitignore
 └── README.md
 ```

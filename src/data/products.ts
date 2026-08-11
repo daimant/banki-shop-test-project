@@ -2,7 +2,7 @@ import { Product } from '@/types';
 
 import product1Img from '@/assets/product-1.png';
 import product2Img from '@/assets/product-2.png';
-import product3Img from '@/assets/product-3-334ab8.png';
+import product3Img from '@/assets/product-3.png';
 import product4Img from '@/assets/product-4.png';
 
 export const products: Product[] = [
