@@ -13,22 +13,30 @@
         </a>
       </nav>
       <div class="footer__contacts">
-        <div class="footer__contact">
+        <a
+          href="tel:+78125555555"
+          class="footer__contact"
+        >
           <img
             :src="phoneIcon"
             alt=""
             class="footer__contact-icon"
           />
           <span>+7 (812) 555-55-55</span>
-        </div>
-        <div class="footer__contact">
+        </a>
+        <a
+          href="https://yandex.ru/maps/?text=Санкт-Петербург,+ул.+Ефимова,+3"
+          target="_blank"
+          rel="noopener"
+          class="footer__contact"
+        >
           <img
             :src="addressIcon"
             alt=""
             class="footer__contact-icon"
           />
           <span>г. Санкт-Петербург, ул. Ефимова, 3</span>
-        </div>
+        </a>
       </div>
     </div>
   </footer>
@@ -107,6 +115,12 @@ export default Vue.extend({
   font-size: 14px;
   line-height: 1.5;
   color: #555555;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.footer__contact:hover {
+  opacity: 0.7;
 }
 
 .footer__contact-icon {
